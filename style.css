@@ -2,6 +2,14 @@
             font-family: 'Inter', sans-serif;
             background-color: #f8fafc;
             color: #1e293b;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .dark body {
+            background-color: #0f172a;
+            /* Slate 900 */
+            color: #f1f5f9;
+            /* Slate 100 */
         }
 
         .fade-in {
@@ -64,15 +72,39 @@
         }
 
         .drag-over-top {
-            border-top: 3px solid #6366f1 !important;
+            position: relative;
+        }
+
+        .drag-over-top::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background-color: #6366f1;
             /* Indigo 500 */
-            background-color: #eef2ff !important;
+            border-radius: 2px;
+            pointer-events: none;
+            z-index: 10;
         }
 
         .drag-over-bottom {
-            border-bottom: 3px solid #6366f1 !important;
+            position: relative;
+        }
+
+        .drag-over-bottom::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background-color: #6366f1;
             /* Indigo 500 */
-            background-color: #eef2ff !important;
+            border-radius: 2px;
+            pointer-events: none;
+            z-index: 10;
         }
 
         .drag-handle {
