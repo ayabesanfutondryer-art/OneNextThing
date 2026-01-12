@@ -203,7 +203,7 @@ class App {
 
     renderOnboarding() {
         const div = document.createElement('div');
-        div.className = 'flex-1 flex flex-col items-center justify-center p-8 space-y-8 fade-in';
+        div.className = 'flex-1 flex flex-col items-center justify-center p-4 md:p-8 space-y-8 fade-in';
 
         div.innerHTML = `
                     <div class="text-center space-y-2">
@@ -217,8 +217,8 @@ class App {
                             <input
                                 type="text"
                                 id="project-title-input"
-                                placeholder="例: 旅行の計画をする、部屋の模様替え..."
-                                class="w-full px-4 py-4 rounded-xl border-2 border-slate-800 bg-slate-800 text-white font-bold text-xl outline-none ring-offset-2 focus:ring-4 focus:ring-indigo-500 transition-all placeholder:text-slate-400 shadow-inner"
+                                placeholder="旅行の計画、模様替えなど..."
+                                class="w-full px-2 py-4 rounded-xl border-2 border-slate-800 bg-slate-800 text-white font-bold text-[10px] md:text-xl outline-none ring-offset-2 focus:ring-4 focus:ring-indigo-500 transition-all placeholder:text-slate-400 shadow-inner min-w-0"
                                 autofocus
                             />
                         </div>
@@ -288,7 +288,7 @@ class App {
         }
 
         const div = document.createElement('div');
-        div.className = 'flex-1 flex flex-col p-8 fade-in h-full overflow-hidden bg-slate-50/50';
+        div.className = 'flex-1 flex flex-col p-4 md:p-8 fade-in h-full overflow-hidden bg-slate-50/50';
 
         const header = `
                     <header class="mb-6 flex justify-between items-start">
@@ -309,25 +309,25 @@ class App {
             this.project.steps.forEach((step, sIdx) => {
                 const allActionsCompleted = step.actions.every(a => a.isCompleted);
                 const stepEl = document.createElement('div');
-                stepEl.className = `group bg-white p-6 rounded-3xl space-y-4 border-2 transition-all ${allActionsCompleted ? 'border-emerald-100 bg-emerald-50/20' : 'border-white shadow-sm'}`;
+                stepEl.className = `group bg-white p-4 md:p-6 rounded-3xl space-y-4 border-2 transition-all ${allActionsCompleted ? 'border-emerald-100 bg-emerald-50/20' : 'border-white shadow-sm'}`;
 
                 // Step Header
                 stepEl.innerHTML = `
-                            <div class="flex items-center space-x-3">
+                            <div class="flex items-center space-x-2 md:space-x-3">
                                 <span class="w-6 h-6 rounded-lg flex items-center justify-center text-xs font-black transition-colors ${allActionsCompleted ? 'bg-emerald-500 text-white' : 'bg-slate-900 text-white'}">
                                     ${allActionsCompleted ? '✓' : sIdx + 1}
                                 </span>
                                 <input
                                     type="text"
-                                    placeholder="ステップ名を入力(例:宿予約…)"
+                                    placeholder="ステップ名 (例:宿予約)"
                                     value="${step.title}"
-                                    class="step-title-input flex-1 bg-transparent outline-none font-black text-lg py-1 transition-all ${allActionsCompleted ? 'text-emerald-700/60 line-through' : 'text-slate-800 focus:text-indigo-600'}"
+                                    class="step-title-input flex-1 bg-transparent outline-none font-black text-[10px] md:text-lg py-1 transition-all min-w-0 ${allActionsCompleted ? 'text-emerald-700/60 line-through' : 'text-slate-800 focus:text-indigo-600'}"
                                 />
                                 <button class="delete-step-btn opacity-0 group-hover:opacity-100 p-1 text-slate-300 hover:text-red-500 transition-all">
                                     ${Icons.Trash}
                                 </button>
                             </div>
-                            <div class="pl-9 space-y-3 actions-container"></div>
+                            <div class="pl-0 md:pl-9 space-y-2 md:space-y-3 actions-container"></div>
                         `;
 
                 // Bind Step Events
@@ -348,7 +348,7 @@ class App {
                 const actionsContainer = stepEl.querySelector('.actions-container');
                 step.actions.forEach((action, aIdx) => {
                     const actionEl = document.createElement('div');
-                    actionEl.className = `flex items-center gap-3 p-3 rounded-2xl border transition-all bg-white border-slate-100 hover:border-slate-200`;
+                    actionEl.className = `flex items-center gap-2 p-2 md:gap-3 md:p-3 rounded-2xl border transition-all bg-white border-slate-100 hover:border-slate-200`;
                     actionEl.setAttribute('draggable', 'true');
                     actionEl.dataset.stepId = step.id;
                     actionEl.dataset.actionId = action.id;
@@ -365,9 +365,9 @@ class App {
                         <div class="flex-1 flex flex-col">
                             <input
                                 type="text"
-                                placeholder="アクションを入力(例:宿を検索、３つに絞る、予約する…)"
+                                placeholder="名所検索、予約など..."
                                 value="${action.text}"
-                                class="action-text-input bg-transparent outline-none text-sm font-bold transition-all text-slate-700 focus:text-indigo-600"
+                                class="action-text-input bg-transparent outline-none text-[10px] md:text-sm font-bold transition-all text-slate-700 focus:text-indigo-600 min-w-0 w-full"
                             />
                             ${action.durationSeconds !== undefined && action.durationSeconds > 0 ? `
                                 <span class="text-[10px] font-black text-emerald-600 uppercase tracking-tighter mt-0.5">
